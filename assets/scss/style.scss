@@ -1,0 +1,32 @@
+// /**
+//  * All Scss File.
+//  **/
+//
+
+//
+//  Default Scss File
+//  _____________________________________________
+
+@import "inner_scss/_variables"; // Variables scss
+@import "inner_scss/_font"; // font file
+@import "inner_scss/_mixin"; // All mixin scss
+@import "inner_scss/_commun"; // Commun scss
+@import "inner_scss/_custom_module"; // Custom module scss
+
+//
+//  Default Pages & section
+//  _____________________________________________
+
+@import "inner_scss/_inner-page"; // index page
+@import "inner_scss/_header"; // page header
+@import "inner_scss/_footer"; // page footer
+
+//
+//  Plugins Scss
+//  _____________________________________________
+
+@import "inner_scss/_slick"; // Slick scss
+
+//
+//  Project Inner Pages
+//  _____________________________________________

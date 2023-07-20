@@ -1,0 +1,199 @@
+//------------------------------------------
+// PREFIX 1
+//------------------------------------------
+
+@mixin prefixcss($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+
+  // @include prefixcss(transform, rotate(45deg), webkit ms);
+}
+
+// cross browser mixin ***************************************************
+
+//------------------------------------------
+// IE
+//------------------------------------------
+@mixin IE {
+  @media screen and (min-width: 0\0) {
+    @content;
+  }
+}
+
+//------------------------------------------
+// Edge
+//------------------------------------------
+@mixin edge {
+  @supports (-ms-ime-align: auto) {
+    @content;
+  }
+}
+
+//------------------------------------------
+// print
+//------------------------------------------
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+// responsive screen  ***************************************************
+
+//------------------------------------------
+// responsive screen
+//------------------------------------------
+
+@mixin respond-to($class) {
+  $breakpoints: 
+    minscreen1200 $minscreen1200,
+    minscreen992 $minscreen992,
+    minscreen768 $minscreen768,
+    minscreen576 $minscreen576;
+  $size: 
+    screen2000 $screen2000,
+    screen1780 $screen1780,
+    screen1600 $screen1600,
+    screen1440 $screen1440,
+    screen1366 $screen1366,
+    screen1325 $screen1325,
+    screen1280 $screen1280,
+    screen1199 $screen1199,
+    screen1024 $screen1024,
+    screen991 $screen991,
+    screen768 $screen768,
+    screen767 $screen767,
+    screen660 $screen660,
+    screen600 $screen600,
+    screen500 $screen500,
+    screen435 $screen435,
+    screen375 $screen375,
+    screen360 $screen360,
+    screen320 $screen320;
+
+  @each $breakpoints, $breakpoints in $size {
+    @if $class == $breakpoints and $size {
+      @media (max-width: $breakpoints) {
+        @content;
+      }
+    }
+  }
+
+  @each $breakpoints, $size in $breakpoints {
+    @if $class == $size and $breakpoints {
+      @media (min-width: $size) {
+        @content;
+      }
+    }
+  }
+}
+
+// images path  ***************************************************
+
+$imagesPath: "../images";
+@function images($imagesPath) {
+  @return $imagesPath;
+}
+// url(#{$imagesPath}/demo.png);
+
+// inner mixin  ***************************************************
+
+//------------------------------------------
+// button mixin
+//------------------------------------------
+
+@mixin btn($background: $bgcolor1, $textcolor: $color2) {
+  appearance: none;
+  user-select: none;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 15px;
+  font-weight: $font-regular;
+  line-height: 1.4;
+  margin: 0;
+  padding: 20px 28px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  position: relative;
+  @if ($background == $bgcolor1) {
+    //
+  } @else if ($background == $bgcolor2) {
+    //
+  } @else if ($background == $bgcolor3) {
+    //
+  }
+}
+
+//------------------------------------------
+// placeholder mixin
+//------------------------------------------
+
+@mixin placeholder {
+  ::placeholder {
+    @content;
+  }
+  ::-webkit-placeholder {
+    @content;
+  }
+  :-moz-placeholder {
+    @content;
+  }
+  ::-moz-placeholder {
+    @content;
+  }
+  ::-ms-placeholder {
+    @content;
+  }
+  :-ms-placeholder {
+    @content;
+  }
+}
+
+//------------------------------------------
+// scrollbar mixin
+//------------------------------------------
+
+@mixin scrollbar {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 30px;
+    background: #efefef;
+    transition: all .5s ease;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $bgcolor1;
+    border-radius: 30px;
+    transition: all .5s ease;
+
+    &:hover {
+      background: #3a3a3a;
+    }
+  }
+}
+
+//------------------------------------------
+// limit line mixin
+//------------------------------------------
+
+@mixin limitline {
+  word-break: break-all;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
+  @content;
+}
